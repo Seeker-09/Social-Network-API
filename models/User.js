@@ -28,6 +28,13 @@ const UserSchema = new Schema(
                 ref: "User"
             }
         ]
+    },
+    {
+        toJSON: {
+            virtuals: true,
+            getters: true
+        },
+        id: false
     }
 )
 
