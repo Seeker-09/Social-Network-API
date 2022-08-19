@@ -75,6 +75,36 @@ const userController = {
                 res.json(userData)
             })
             .catch(err => res.status(400).json(err))
+    },
+
+    // api/users/:userId/friends
+    // add friend
+    /*
+        expects: 
+        {
+            "_id": "id"
+        }
+    */
+    addFriend({ params, body }, res) {
+        User.findOneAndUpdate(
+            { _id: params.userId },
+            { $push: { friends: body } },
+            { new: true }
+        )
+        .then(userData => res.json(userData))
+        .catch(err => res.json(err))
+    },
+
+    // /api/users/:userId/friends/:friendId
+    // delete friend
+    deleteFriend({ params }, res) {
+        User.findOneAndUpdate(
+            { _id: params.userId },
+            { $pull: { friends: params.friendId } },
+            { new: true }
+        )
+        .then(userData => res.json(userData))
+        .catch(err => res.json(err))
     }
 }
 
