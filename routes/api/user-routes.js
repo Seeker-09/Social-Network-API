@@ -13,7 +13,7 @@ router
     .get(getAllUsers)
     .post(createUser)
 
-// GET on, PUT, and DELETE at /api/users/:id
+// GET one, PUT, and DELETE at /api/users/:id
 router
     .route('/:id')
     .get(getUserById)
